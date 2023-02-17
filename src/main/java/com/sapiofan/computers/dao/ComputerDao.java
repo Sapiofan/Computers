@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ComputerDao extends JpaRepository<Computer, Long> {
 
-    @Query("select c from Computer c where c.name like :name or c.brand like :name")
+    @Query("select c from Computer c where lower(c.name) like lower(:name) or lower(c.brand) like lower(:name)")
     List<Computer> findComputersByName(String name);
 }
